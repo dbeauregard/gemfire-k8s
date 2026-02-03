@@ -25,13 +25,10 @@ brew install kubectx
 ## Export Your Repository Credentials
 1. Login to [support.broadcom.com](http://support.broadcom.com)
 2. Select 'My Downloads'
-3. Search for GemFire and Select ["VMware Tanzu GemFire"](https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Tanzu%20GemFire). (**Not** "VMware Tanzu GemFire on Kuberntes"; yes, seriously)
-4. Expand (click on the right arrow '**>**') "VMware Tanzu GemFire"
-5. Scroll down and click on the "Show All Releases" button
-6. Navigate to the row named "Click Green Token for Repository Access" and click on the green shield
-![green shield](images/greenshield.png)
-7. View your Repository Credentials ('User Name' and 'Password / Access Token')
-8. Export your Credentials
+3. See the updated token generation process 
+    - KB: https://knowledge.broadcom.com/external/article?articleId=421110
+    - Docs: https://techdocs.broadcom.com/us/en/vmware-tanzu/data-solutions/tanzu-gemfire-on-kubernetes/2-6/gf-k8s/install.html
+4. Export your Credentials
 ```shell
 export TGF_REPO_USER='user.email@company.com'
 ```
