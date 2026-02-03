@@ -3,4 +3,4 @@ kind: GemFireCluster
 metadata:
   name: gemfire1
 spec:
-  image: registry.packages.broadcom.com/pivotal-gemfire/vmware-gemfire:10.1.0
+  image: registry.packages.broadcom.com/pivotal-gemfire/vmware-gemfire:10.2.1

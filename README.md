@@ -72,8 +72,8 @@ kubectl create secret docker-registry image-pull-secret -n tgf --docker-server=r
 ```
 5. Helm Deploy the TGF Operator
 ```shell
-helm install gemfire-crd oci://registry.packages.broadcom.com/tanzu-gemfire-for-kubernetes/gemfire-crd --version 2.5.0 --namespace tgf --set operatorReleaseName=gemfire-operator
-helm install gemfire-operator oci://registry.packages.broadcom.com/tanzu-gemfire-for-kubernetes/gemfire-operator --version 2.5.0 --namespace tgf
+helm install gemfire-crd oci://registry.packages.broadcom.com/tanzu-gemfire-for-kubernetes/gemfire-crd --version 2.6.0 --namespace tgf --set operatorReleaseName=gemfire-operator
+helm install gemfire-operator oci://registry.packages.broadcom.com/tanzu-gemfire-for-kubernetes/gemfire-operator --version 2.6.0 --namespace tgf
 ```
 6. Wait until the pod is ready (1/1) and RUNNING
 ```shell
