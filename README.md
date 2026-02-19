@@ -25,9 +25,13 @@ brew install kubectx
 ## Export Your Repository Credentials
 1. Login to [support.broadcom.com](http://support.broadcom.com)
 2. Select 'My Downloads'
-3. See the updated token generation process 
-    - KB: https://knowledge.broadcom.com/external/article?articleId=421110
-    - Docs: https://techdocs.broadcom.com/us/en/vmware-tanzu/data-solutions/tanzu-gemfire-on-kubernetes/2-6/gf-k8s/install.html
+3. Select 'Registry Tokens' (blue button, top right)
+4. If you already have an 'active' token you can use that, if not: click the 'Generate Token' button, then the 'Submit' button to generate a token
+5. Click the copy icon (two overlapping boxes) to copy the token
+![Registry Token](images/Registry-Token.png)
+6. For more details, see the updated token generation process
+    - [KB](https://knowledge.broadcom.com/external/article?articleId=421110)
+    - [Docs](https://techdocs.broadcom.com/us/en/vmware-tanzu/data-solutions/tanzu-gemfire-on-kubernetes/2-6/gf-k8s/install.html)
 4. Export your Credentials
 ```shell
 export TGF_REPO_USER='user.email@company.com'
