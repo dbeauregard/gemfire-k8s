@@ -140,9 +140,11 @@ list members
 6. Type `exit` to exit gfsh and the container
 
 ## Deploy the GemFire Management Console
-[Official Docs Here](https://techdocs.broadcom.com/us/en/vmware-tanzu/data-solutions/tanzu-gemfire-management-console/1-4/gf-mc/index.html) (for reference)
+> [!NOTE]
+> [Official Docs Here](https://techdocs.broadcom.com/us/en/vmware-tanzu/data-solutions/tanzu-gemfire-management-console/1-4/gf-mc/index.html) (for reference)
 
 Simple Lab Instructions:
+> [!NOTE]
 > Note: We already set the docker-registry image-pull-secret above.  If you have not done that or are using a different namespace make sure to set it here.
 1. Create the TGF Management Console instance (uses [tgfmgmt.yaml](tgfmgmt.yaml). Take a look!)
 ```shell
@@ -150,7 +152,7 @@ kubectl create -f tgfmgmt.yaml -n tgf
 ```
 2. Check the pod status and wait for it to be running
 ```shell
-kubectl get pods -n tgf
+kubectl get pods -n tgf #add ‘-w’ to watch
 ```
 3. Retrieve the keystore and truststore files from the locator
 ```shell
@@ -159,7 +161,7 @@ kubectl -n tgf cp gemfire1-locator-0:/certs/..data/truststore.p12 ./truststore.p
 ```
 4. Get truststore/keystore credential (same as above for GFSH)
 ```shell
-kubectl get secret gemfire1-cert -n tgf -o jsonpath='{.data.password}' | base64 -d #ignore any shell appended % signs
+kubectl get secret gemfire1-cert -n tgf -o jsonpath='{.data.password}' | base64 -d # ignore any shell appended % signs
 ```
 5. Port-forward to the pod
 ```shell
