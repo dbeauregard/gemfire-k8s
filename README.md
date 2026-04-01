@@ -1,5 +1,6 @@
 # GemFire on Kubernetes
-Instructions to run GemFire (TGF) in Kubernetes (K8s).  We will be deploying TGF to K8s locally on your laptop using the TGF Operator which, by default, deploys one locator and two servers.  Any compliant K8s distribution should work for this (e.g., Kind, MiniKube, Colima, etc).  This lab has been tested with a Kind Cluster running in Docker Desktop on Apple Silicon (ARM-based) Apple MacBook Pro.
+Instructions to run GemFire (TGF) in Kubernetes (K8s).  We will be deploying TGF to K8s locally on your laptop using the TGF Operator which, by default, deploys one locator and two servers.  Any compliant K8s distribution should work for this (e.g., Kind, MiniKube, Colima, etc). \
+This lab has been tested with a Kind Cluster running in Docker Desktop on Apple Silicon (ARM-based) Apple MacBook Pro.
 
 # Mac/OSX Setup
 The below will work on both ARM and Intel-based Macs.  It should also work on Linux or a K8s cluster on Windows but some modifications to the prerequisits or commands may be required.  Also, if you have a K8s deployment running elsewhere (e.g., in a lab) you can use that instead of a local deployment.
@@ -29,8 +30,8 @@ brew install kubectx
 4. If you already have an 'active' token you can use that, if not: click the 'Generate Token' button, then the 'Submit' button to generate a token
 5. Click the copy icon (two overlapping boxes) to copy the token
 ![Registry Token](images/Registry-Token.png)
-6. For more details, see the updated token generation process
-    - [KB](https://knowledge.broadcom.com/external/article?articleId=421110)
+6. For more details, see the updated token generation process see:
+    - [Knowledge Base](https://knowledge.broadcom.com/external/article?articleId=421110)
     - [Docs](https://techdocs.broadcom.com/us/en/vmware-tanzu/data-solutions/tanzu-gemfire-on-kubernetes/2-6/gf-k8s/install.html)
 4. Export your Credentials
 ```shell
@@ -45,14 +46,16 @@ export TGF_REPO_PASSWORD='****'
 ```shell
 kind create cluster
 ```
- - Kind will set the correct K8s context for you
+> [!NOTE]
+> Kind will set the correct K8s context for you
 2. Validate K8s is up and running 
 ```shell
 kubectl get nodes
 ```
 
 ## Deploy the TGF Operator
-[Official Docs Here](https://techdocs.broadcom.com/us/en/vmware-tanzu/data-solutions/tanzu-gemfire-on-kubernetes/2-5/gf-k8s/index.html) (for reference)
+> [!NOTE]
+> [Official Docs Here](https://techdocs.broadcom.com/us/en/vmware-tanzu/data-solutions/tanzu-gemfire-on-kubernetes/2-6/gf-k8s/index.html) (for reference)
 
 Simple Lab Instructions:
 1. Create a new namespace
@@ -71,23 +74,26 @@ helm registry login -u $TGF_REPO_USER -p $TGF_REPO_PASSWORD registry.packages.br
 ```shell
 kubectl create secret docker-registry image-pull-secret -n tgf --docker-server=registry.packages.broadcom.com --docker-username=$TGF_REPO_USER --docker-password=$TGF_REPO_PASSWORD
 ```
-5. Helm Deploy the TGF Operator
+5. Helm Deploy the TGF CRD and Operator
 ```shell
-helm install gemfire-crd oci://registry.packages.broadcom.com/tanzu-gemfire-for-kubernetes/gemfire-crd --version 2.6.0 --namespace tgf --set operatorReleaseName=gemfire-operator
-helm install gemfire-operator oci://registry.packages.broadcom.com/tanzu-gemfire-for-kubernetes/gemfire-operator --version 2.6.0 --namespace tgf
+helm install gemfire-crd oci://registry.packages.broadcom.com/tanzu-gemfire-for-kubernetes/gemfire-crd --version 2.6.1 --namespace tgf --set operatorReleaseName=gemfire-operator
+```
+```shell
+helm install gemfire-operator oci://registry.packages.broadcom.com/tanzu-gemfire-for-kubernetes/gemfire-operator --version 2.6.1 --namespace tgf
 ```
 6. Wait until the pod is ready (1/1) and RUNNING
 ```shell
 kubectl get po -n tgf #add ‘-w’ to watch
 ```
-  - details
-    ```shell
-    kubectl describe po gemfire-operator-controller-manager-<guid> -n tgf
-    ```
-  - logs
-    ```shell
-    kubectl logs gemfire-operator-controller-manager-<guid> -n tgf #add '-f' to tail
-    ```
+> [!TIP]
+>  - view details
+>    ```shell
+>    kubectl describe po gemfire-operator-controller-manager-<guid> -n tgf
+>    ```
+>  - view logs
+>    ```shell
+>    kubectl logs gemfire-operator-controller-manager-<guid> -n tgf #add '-f' to tail
+>    ```
 
 ## Deploy TGF Cluster
 5. Clone this Git Repository
