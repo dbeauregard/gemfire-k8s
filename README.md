@@ -145,7 +145,7 @@ list members
 
 Simple Lab Instructions:
 > [!NOTE]
-> Note: We already set the docker-registry image-pull-secret above.  If you have not done that or are using a different namespace make sure to set it here.
+> We already set the docker-registry image-pull-secret above.  If you have not done that or are using a different namespace make sure to set it here.
 1. Create the TGF Management Console instance (uses [tgfmgmt.yaml](tgfmgmt.yaml). Take a look!)
 ```shell
 kubectl create -f tgfmgmt.yaml -n tgf
@@ -184,7 +184,7 @@ kubectl port-forward pod/gmc-0 -n tgf 8080
    1. Select 'Connect Cluster'
 ![Connect Cluster](images/ConnectCluster.png)
 9. Click on the new cluster Nickname URL 'gemfire1' in the "All Clusters" page
-10. Have Fun Exploring
+10. Have Fun Exploring!
 ![GMC](images/GMC.png)
 
 ## Cleanup
