@@ -105,7 +105,7 @@ cd gemfire-k8s
 ```shell
 kubectl create -f gemfire1.yaml -n tgf
 ```
-4. Check the status of the GemFire cluster and pods.  By default there will be 1 locator and 2 servers.  Wait for them to be running.
+4. Check the status of the GemFire cluster and pods.  By default there will be 1 locator and 2 servers.  Wait for them, the pods, to be running.
 ```shell
 kubectl get pods -n tgf #add ‘-w’ to watch
 ```
@@ -119,7 +119,7 @@ kubectl get gemfireclusters -n tgf
 ## Connect with GFSH CLI
 1. Get truststore/keystore credential (TLS_PASSWORD below)
 ```shell
-kubectl get secret gemfire1-cert -n tgf -o jsonpath='{.data.password}' | base64 -d #ignore any shell appended % signs
+kubectl get secret gemfire1-cert -n tgf -o jsonpath='{.data.password}' | base64 -d # ignore any shell appended % signs
 ```
 2. Exec into the Locator Pod/Container:
 ```shell
@@ -136,7 +136,7 @@ connect --locator=gemfire1-locator-0.gemfire1-locator.tgf.svc.cluster.local[1033
 ```shell
 list members
 ```
-5. See [future.md](future.md) for more GFSH commands and a simple example
+5. See [gfsh-cmds.md](./gfsh-cmds.md) for more GFSH commands and a simple example
 6. Type `exit` to exit gfsh and the container
 
 ## Deploy the GemFire Management Console
